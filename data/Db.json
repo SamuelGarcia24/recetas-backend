@@ -4,13 +4,7 @@
       "id": "1",
       "nombre": "Ensalada César",
       "imagen": "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=400",
-      "ingredientes": [
-        "lechuga romana",
-        "crutones",
-        "queso parmesano",
-        "aderezo césar",
-        "pollo a la plancha"
-      ],
+      "ingredientes": ["lechuga romana", "crutones", "queso parmesano", "aderezo césar", "pollo a la plancha"],
       "pasos": [
         "Lavar y trozar la lechuga",
         "Cocinar el pollo a la plancha y cortarlo en tiras",
@@ -19,20 +13,14 @@
       ],
       "categoria": "ensaladas",
       "tiempoPreparacion": 20,
-      "vecesPreparada": 7,
-      "puntuacionPromedio": 4.2
+      "porciones": 2,
+      "puntuacionPromedio": 4.5
     },
     {
       "id": "2",
       "nombre": "Pasta Carbonara",
       "imagen": "https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400",
-      "ingredientes": [
-        "pasta espagueti",
-        "huevos",
-        "tocino",
-        "queso parmesano",
-        "pimienta negra"
-      ],
+      "ingredientes": ["pasta espagueti", "huevos", "tocino", "queso parmesano", "pimienta negra"],
       "pasos": [
         "Cocinar la pasta en agua con sal",
         "Freír el tocino hasta que esté crujiente",
@@ -42,21 +30,14 @@
       ],
       "categoria": "pastas",
       "tiempoPreparacion": 30,
-      "vecesPreparada": 12,
+      "porciones": 4,
       "puntuacionPromedio": 4.7
     },
     {
       "id": "3",
       "nombre": "Tacos de Pollo",
       "imagen": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400",
-      "ingredientes": [
-        "tortillas de maíz",
-        "pollo",
-        "cebolla",
-        "cilantro",
-        "salsa verde",
-        "limón"
-      ],
+      "ingredientes": ["tortillas de maíz", "pollo", "cebolla", "cilantro", "salsa verde", "limón"],
       "pasos": [
         "Cocinar el pollo con sal y especias",
         "Desmenuzar el pollo",
@@ -66,23 +47,8 @@
       ],
       "categoria": "mexicana",
       "tiempoPreparacion": 35,
-      "vecesPreparada": 5,
+      "porciones": 3,
       "puntuacionPromedio": 4.5
-    },
-    {
-      "id": "1779476301314",
-      "nombre": "Jamones",
-      "imagen": "https://www.cocina-ecuatoriana.com/base/stock/Recipe/empanadas-de-maiz/empanadas-de-maiz_web.jpg.webp",
-      "ingredientes": [
-        "gfdsg"
-      ],
-      "pasos": [
-        "gdfgd"
-      ],
-      "categoria": "Espaol",
-      "tiempoPreparacion": 60,
-      "vecesPreparada": 0,
-      "puntuacionPromedio": 0
     }
   ],
   "opiniones": [
@@ -92,6 +58,7 @@
       "nombreComensal": "María",
       "comentario": "Muy rica y fácil de hacer",
       "calificacion": 4,
+      "vecesPreparada": 2,
       "fecha": "2024-01-15"
     },
     {
@@ -100,6 +67,7 @@
       "nombreComensal": "Carlos",
       "comentario": "Le agregué más queso y quedó espectacular",
       "calificacion": 5,
+      "vecesPreparada": 1,
       "fecha": "2024-01-20"
     },
     {
@@ -108,6 +76,7 @@
       "nombreComensal": "Laura",
       "comentario": "La mejor carbonara que he hecho en casa",
       "calificacion": 5,
+      "vecesPreparada": 3,
       "fecha": "2024-02-01"
     }
   ]
