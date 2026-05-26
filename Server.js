@@ -61,7 +61,7 @@ app.post('/api/recetas', (req, res) => {
     pasos: req.body.pasos,
     categoria: req.body.categoria,
     tiempoPreparacion: req.body.tiempoPreparacion,
-    vecesPreparada: 0,
+    porciones: req.body.porciones,
     puntuacionPromedio: 0
   }
 
@@ -69,21 +69,6 @@ app.post('/api/recetas', (req, res) => {
   saveData(db)
 
   res.status(201).json({ success: true, data: nuevaReceta })
-})
-
-// mark recipe as prepared (adds 1 to the count)
-app.put('/api/recetas/:id/preparar', (req, res) => {
-  const db = readData()
-  const receta = db.recetas.find(r => r.id === req.params.id)
-
-  if (!receta) {
-    return res.status(404).json({ success: false, message: 'recipe not found' })
-  }
-
-  receta.vecesPreparada += 1
-  saveData(db)
-
-  res.json({ success: true, vecesPreparada: receta.vecesPreparada })
 })
 
 // delete a recipe and its opinions
@@ -102,9 +87,33 @@ app.delete('/api/recetas/:id', (req, res) => {
   res.json({ success: true, message: 'recipe deleted' })
 })
 
+// update a recipe
+app.put('/api/recetas/:id', (req, res) => {
+  const db = readData()
+  const index = db.recetas.findIndex(r => r.id === req.params.id)
+
+  if (index === -1) {
+    return res.status(404).json({ success: false, message: 'recipe not found' })
+  }
+
+  db.recetas[index] = {
+    ...db.recetas[index],
+    nombre: req.body.nombre,
+    imagen: req.body.imagen,
+    ingredientes: req.body.ingredientes,
+    pasos: req.body.pasos,
+    categoria: req.body.categoria,
+    tiempoPreparacion: req.body.tiempoPreparacion,
+    porciones: req.body.porciones
+  }
+
+  saveData(db)
+  res.json({ success: true, data: db.recetas[index] })
+})
+
 // ===== opinions =====
 
-// add an opinion and update the average rating
+// add an opinion with vecesPreparada and update the average rating
 app.post('/api/opiniones', (req, res) => {
   const db = readData()
   const receta = db.recetas.find(r => r.id === req.body.recetaId)
@@ -119,6 +128,7 @@ app.post('/api/opiniones', (req, res) => {
     nombreComensal: req.body.nombreComensal,
     comentario: req.body.comentario,
     calificacion: req.body.calificacion,
+    vecesPreparada: req.body.vecesPreparada,
     fecha: new Date().toISOString().split('T')[0]
   }
 
@@ -168,29 +178,6 @@ app.delete('/api/opiniones/:id', (req, res) => {
   saveData(db)
 
   res.json({ success: true, message: 'opinion deleted' })
-})
-
-// update a recipe
-app.put('/api/recetas/:id', (req, res) => {
-  const db = readData()
-  const index = db.recetas.findIndex(r => r.id === req.params.id)
-
-  if (index === -1) {
-    return res.status(404).json({ success: false, message: 'recipe not found' })
-  }
-
-  db.recetas[index] = {
-    ...db.recetas[index],
-    nombre: req.body.nombre,
-    imagen: req.body.imagen,
-    ingredientes: req.body.ingredientes,
-    pasos: req.body.pasos,
-    categoria: req.body.categoria,
-    tiempoPreparacion: req.body.tiempoPreparacion
-  }
-
-  saveData(db)
-  res.json({ success: true, data: db.recetas[index] })
 })
 
 // home
