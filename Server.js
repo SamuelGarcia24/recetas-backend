@@ -188,3 +188,30 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
   console.log('server running on http://localhost:3000')
 })
+
+// Nuevo endpoint para las estadísticas completas
+app.get('/api/recetas/:id/estadisticas', (req, res) => {
+  const db = readData();
+  const receta = db.recetas.find(r => r.id === req.params.id);
+
+  if (!receta) {
+    return res.status(404).json({ success: false, message: 'recipe not found' });
+  }
+
+  const opiniones = db.opiniones.filter(o => o.recetaId === req.params.id);
+  
+  // Sumar cuántas veces se ha preparado según los registros de opiniones
+  const totalVecesPreparada = opiniones.reduce((acc, o) => acc + (o.vecesPreparada || 0), 0);
+
+  res.json({
+    success: true,
+    data: {
+      puntuacionPromedio: receta.puntuacionPromedio,
+      totalPreparaciones: totalVecesPreparada,
+      totalOpiniones: opiniones.length,
+      tiempoPreparacion: receta.tiempoPreparacion,
+      porciones: receta.porciones,
+      opiniones: opiniones
+    }
+  });
+});
